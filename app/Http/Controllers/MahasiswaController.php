@@ -12,6 +12,8 @@ class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -28,10 +30,24 @@ class MahasiswaController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMahasiswaRequest $request)
     {
-        //
+        // return response()->json('hello');
+        return new MahasiswaResource(Mahasiswa::create(
+            [
+                'nim' => $request->nim,
+                'nama' => $request->nama,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jurusan' => $request->jurusan,
+                'email' => $request->email,
+                'no_hp' => $request->no_hp,
+                'kelas_id' => $request->kelas_id,
+            ]
+        ));
     }
 
 /**
