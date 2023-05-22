@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MahasiswaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,3 +23,5 @@ Route::get('/hello',function(){
     // return response()->json($data);
     return 'hello world';
 });
+
+Route::apiResource('/mahasiswa',MahasiswaController::class);
