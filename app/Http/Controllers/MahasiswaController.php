@@ -22,6 +22,8 @@ class MahasiswaController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -50,7 +52,7 @@ class MahasiswaController extends Controller
         ));
     }
 
-/**
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Mahasiswa  $mahasiswa
@@ -63,25 +65,45 @@ class MahasiswaController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Mahasiswa  $mahasiswa
+     * @return \Illuminate\Http\Response
      */
-    public function edit(string $id)
+    public function edit(Mahasiswa $mahasiswa)
     {
         //
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Mahasiswa  $mahasiswa
+     * @return \Illuminate\Http\Response
+     * 
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateMahasiswaRequest $request, Mahasiswa $mahasiswa)
     {
-        //
+        $mahasiswa->update([
+            'nim' => $request->nim,
+            'nama' => $request->nama,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jurusan' => $request->jurusan,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+            'kelas_id' => $request->kelas_id,
+        ]);
+        return new MahasiswaResource($mahasiswa);
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Mahasiswa  $mahasiswa
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy(Mahasiswa $mahasiswa)
     {
-        //
+        
     }
 }
