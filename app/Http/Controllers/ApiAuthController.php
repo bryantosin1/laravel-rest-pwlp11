@@ -51,9 +51,11 @@ class ApiAuthController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function logout(Request $request)
     {
-        //
+        $request->user()->tokens()->delete();
+
+        return response()->noContent();
     }
 
     /**
